@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./swiper/swiper.min.css">
+
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <img src="./images/1_02.png" alt="">
+            <img src="./images/3_02.png" alt="">
+        </header>
+        <section class="section">
+            <div>
+                <div class="box">
+                    <ul>
+                        <li>NBA</li>
+                        <li>CBA</li>
+                        <li>足球</li>
+                        <li>电竞</li>
+                        <li>社区</li>
+                        <li>游戏</li>
+                        <li>步行</li>
+                    </ul>
+                </div>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="./images/2_05.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./images/2_05.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./images/2_05.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="nav">
+                    <div class="box1">
+                        <p>
+                            <span>NBA</span>爵士vs快船
+                        </p>
+                        <p>
+                            <b>137</b> -143
+                        </p>
+                    </div>
+                    <p>已结束</p>
+                </div>
+                <div class="nav">
+                    <div class="box1">
+                        <p>
+                            <span>NBA</span>爵士vs快船
+                        </p>
+                        <p>
+                            <b>137</b> -143
+                        </p>
+                    </div>
+                    <p>已结束</p>
+                </div>
+                <div class="nav">
+                    <div class="box1">
+                        <p>
+                            <span>NBA</span>爵士vs快船
+                        </p>
+                        <p>
+                            <b>137</b> -143
+                        </p>
+                    </div>
+                    <p>已结束</p>
+                </div>
+                <div class="dls">
+                    <!-- <dl>
+                    <dt><img src="./images/4_07.png" alt=""></dt>
+                    <dd>
+
+                        <P><b>NBA</b>终点站！诺维茨基最后一战<br>得到20分10篮板</P>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><img src="./images/4_07.png" alt=""></dt>
+                    <dd>
+
+                        <P><b>NBA</b>终点站！诺维茨基最后一战<br>得到20分10篮板</P>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><img src="./images/4_07.png" alt=""></dt>
+                    <dd>
+
+                        <P><b>NBA</b>终点站！诺维茨基最后一战<br>得到20分10篮板</P>
+                    </dd>
+                </dl> -->
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="./js/flexible.js"></script>
+    <script src="./swiper/swiper.min.js"></script>
+    <script src="./swiper/better-scroll.js"></script>
+    <script>
+        const mySwiper = new Swiper(".swiper-container", {
+            autoplay: true,
+            loop: true,
+        })
+
+        function ajax(url, data = null, type = "GET") {
+            return new Promise((reslove, reject) => {
+                let xhr = new XMLHttpRequest();
+                xhr.open(type, url)
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState !== 4) return;
+                    if (xhr.status === 200) {
+                        reslove(xhr.responseText)
+                    } else {
+                        reject("500")
+                    }
+                }
+                xhr.send(null)
+            })
+        }
+        ajax("/api").then(data => {
+            data = JSON.parse(data);
+            const dls = document.querySelector(".dls");
+            console.log(data);
+            let str = "";
+
+            data.map(item => {
+                str += `
+                <dl>
+                    <dt><img src="${item.img}" alt=""></dt>
+                    <dd>
+
+                        <P><b>NBA</b>${item.op}</P>
+                    </dd>
+                </dl>
+                `
+            })
+            dls.innerHTML = str;
+            let bscroll = new BScroll(".section")
+        })
+    </script>
+
+</body>
+
+</html>

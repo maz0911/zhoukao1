@@ -394,7 +394,7 @@ header {
 section {
   width: 100%;
   flex: 1;
-  overflow-y: scroll;
+  overflow: hidden;
 }
 
 section .box {

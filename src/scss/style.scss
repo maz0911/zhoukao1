@@ -28,7 +28,7 @@ header {
 section {
     width: 100%;
     flex: 1;
-    overflow-y: scroll;
+    overflow: hidden;
     .box {
         width: 100%;
         height: pxTorem(50px);
