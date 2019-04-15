@@ -27,8 +27,3 @@ gulp.task("server", () => {
             open: true,
         }))
 })
-gulp.task("sass", () => {
-    return gulp.src("./src/scss/*.scss")
-        .pipe(sass())
-        .pipe(gulp.dest("./dest/css"))
-})
